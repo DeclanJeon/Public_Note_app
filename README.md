@@ -12,3 +12,4 @@ DB_PASS =
 DB_NAME = 
 
 4. Change server/routes/note.js query statement to match DB content
+5. npm run start
