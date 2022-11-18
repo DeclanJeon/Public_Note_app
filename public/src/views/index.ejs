@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+    <title>
+        <%= viewTitle %>
+    </title>
+</head>
+
+<body>
+    <div class="popup-box">
+        <div class="popup">
+            <div class="content">
+                <header>
+                    <p>Add a new Note</p>
+                    <i class="uil uil-times"></i>
+                </header>
+                <form action="#">
+                    <span id="note_id" hidden></span>
+                    <div class="row user">
+                        <label>User</label>
+                        <input id="user" type="text">
+                    </div>
+
+                    <div class="row title">
+                        <label>Title</label>
+                        <input id="title" type="text">
+                    </div>
+
+                    <div class="row description">
+                        <label>Description</label>
+                        <textarea id="desc"></textarea>
+                    </div>
+                    <button>Add Note</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <li class="add-box">
+            <div class="icon">
+                <i class="uil uil-plus"></i>
+            </div>
+            <p>Add New Note</p>
+        </li>
+
+    </div>
+
+    <script type="module" src="note.js"></script>
+</body>
+
+</html>
