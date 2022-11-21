@@ -15,21 +15,6 @@ const userTag = popupBox.querySelector("input#user");
 const titleTag = popupBox.querySelector("input#title");
 const descTag = popupBox.querySelector("textarea#desc");
 
-const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-];
-
 // const notes = JSON.parse(localStorage.getItem("notes") || "[]");
 let notes;
 let noteInfo;
@@ -126,8 +111,6 @@ const sendToServerUpdate = async () => {
 
     axiosFunction(optionsPost);
     popupBox.classList.remove("show");
-
-    // await showNotes();
 };
 
 const sendToServerCreate = async () => {
@@ -149,8 +132,6 @@ const sendToServerCreate = async () => {
     axiosFunction(optionsPost);
 
     popupBox.classList.remove("show");
-
-    // await showNotes();
 };
 
 const axiosFunction = async (options) => {
