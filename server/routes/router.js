@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
     res.render("index", {
-        viewTitle: "Note App",
+        viewTitle: "Notero",
     });
 });
 
