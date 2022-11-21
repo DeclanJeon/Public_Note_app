@@ -93,13 +93,13 @@ async function showNotes() {
     });
 }
 
-addBtn.addEventListener("click", (e) => {
+addBtn.addEventListener("click", async (e) => {
     if (addBtn.innerText.includes("Add")) {
         sendToServerCreate();
-        showNotes();
+        await showNotes();
     } else {
         sendToServerUpdate();
-        showNotes();
+        await showNotes();
     }
 });
 
