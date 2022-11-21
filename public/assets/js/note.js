@@ -94,7 +94,8 @@ async function showNotes() {
 }
 
 addBtn.addEventListener("click", (e) => {
-    if (addBtn.innerText.includes("Add")) {
+    const btnText = e.target.innerText;
+    if (btnText.includes("Add")) {
         sendToServerCreate();
     } else {
         sendToServerUpdate();
@@ -126,7 +127,7 @@ const sendToServerUpdate = async () => {
     axiosFunction(optionsPost);
     popupBox.classList.remove("show");
 
-    await showNotes();
+    // await showNotes();
 };
 
 const sendToServerCreate = async () => {
@@ -136,13 +137,11 @@ const sendToServerCreate = async () => {
 
     noteDesc = noteDesc.replace(/(?:\r\n|\r|\n)/g, "<br/>");
 
-    if (noteTitle || noteDesc) {
-        noteInfo = {
-            user: noteUser,
-            title: noteTitle,
-            description: noteDesc,
-        };
-    }
+    noteInfo = {
+        user: noteUser,
+        title: noteTitle,
+        description: noteDesc,
+    };
 
     optionsPost.data = noteInfo;
     optionsPost.url = "/note/add";
@@ -151,7 +150,7 @@ const sendToServerCreate = async () => {
 
     popupBox.classList.remove("show");
 
-    await showNotes();
+    // await showNotes();
 };
 
 const axiosFunction = async (options) => {
@@ -159,6 +158,7 @@ const axiosFunction = async (options) => {
         .then((res) => {
             if (res.data.success === 1) {
                 console.log("Data Response Successfully");
+                showNotes();
             } else {
                 console.log("Data Response Failed");
             }

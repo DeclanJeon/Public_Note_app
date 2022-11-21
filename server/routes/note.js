@@ -115,13 +115,23 @@ const insertRecord = async (req, res) => {
     try {
         let sql =
             "INSERT INTO work_note SET user_id=?, note_title=?, note_description=?, date_at= now()";
-        await pool.query(
+        const result = await pool.query(
             sql,
             [data.user_id, data.note_title, data.note_description],
             (err, results) => {
                 if (err) throw err;
             }
         );
+
+        if (result.warningStatus === 0) {
+            return res.status(200).json({
+                success: 1,
+            });
+        } else {
+            res.status(500).json({
+                success: 0,
+            });
+        }
     } catch (err) {
         console.log("Error : ", err.message);
     }
