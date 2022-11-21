@@ -38,7 +38,6 @@ let noteUser;
 let noteTitle;
 let noteDesc;
 
-let isDataSuccess = false;
 addBox.addEventListener("click", () => {
     titleTag.focus();
     popupBox.classList.add("show");
@@ -127,12 +126,7 @@ const sendToServerUpdate = async () => {
     axiosFunction(optionsPost);
     popupBox.classList.remove("show");
 
-    let noteReload = setInterval(() => {
-        if (isDataSuccess === true) {
-            showNotes();
-            clearInterval(noteReload);
-        }
-    }, 100);
+    await showNotes();
 };
 
 const sendToServerCreate = async () => {
@@ -157,23 +151,16 @@ const sendToServerCreate = async () => {
 
     popupBox.classList.remove("show");
 
-    let noteReload = setInterval(() => {
-        if (isDataSuccess === true) {
-            showNotes();
-            clearInterval(noteReload);
-        }
-    }, 100);
+    await showNotes();
 };
 
 const axiosFunction = async (options) => {
     await axios(options)
         .then((res) => {
             if (res.data.success === 1) {
-                isDataSuccess = true;
-                console.log("Data Response Successfully", isDataSuccess);
+                console.log("Data Response Successfully");
             } else {
-                isDataSuccess = false;
-                console.log("Data Response Failed", isDataSuccess);
+                console.log("Data Response Failed");
             }
         })
         .catch((err) => {
