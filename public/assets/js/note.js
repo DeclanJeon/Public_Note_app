@@ -38,9 +38,7 @@ let noteUser;
 let noteTitle;
 let noteDesc;
 
-let isUpdated = false;
-let isCreated = false;
-
+let isDataSuccess = false;
 addBox.addEventListener("click", () => {
     titleTag.focus();
     popupBox.classList.add("show");
@@ -102,11 +100,17 @@ addBtn.addEventListener("click", (e) => {
     } else {
         sendToServerUpdate();
     }
+
+    // 초기화
+    userTag.value = "";
+    titleTag.value = "";
+    descTag.value = "";
+
+    addBtn.innerText = "Add Note";
+    popupTitle.innerText = "Add a new Note";
 });
 
 const sendToServerUpdate = async () => {
-    noteUser = userTag.value;
-    noteTitle = titleTag.value;
     noteDesc = descTag.value;
 
     noteDesc = noteDesc.replaceAll("<br/>", "\r\n");
@@ -123,8 +127,14 @@ const sendToServerUpdate = async () => {
     axiosFunction(optionsPost);
     popupBox.classList.remove("show");
 
-    setTimeout(() => {
-        showNotes();
+    let noteReload = setInterval(() => {
+        if (isDataSuccess === true) {
+            showNotes();
+            clearInterval(noteReload);
+        } else {
+            console.log("Failed to note Reload");
+            clearInterval(noteReload);
+        }
     }, 100);
 };
 
@@ -150,8 +160,14 @@ const sendToServerCreate = async () => {
 
     popupBox.classList.remove("show");
 
-    setTimeout(() => {
-        showNotes();
+    let noteReload = setInterval(() => {
+        if (isDataSuccess === true) {
+            showNotes();
+            clearInterval(noteReload);
+        } else {
+            console.log("Failed to note Reload");
+            clearInterval(noteReload);
+        }
     }, 100);
 };
 
@@ -159,9 +175,11 @@ const axiosFunction = async (options) => {
     await axios(options)
         .then((res) => {
             if (res.data.success === 1) {
-                console.log("Data Response Successfully");
+                console.log("Data Response Successfully", isDataSuccess);
+                isDataSuccess = true;
             } else {
-                console.log("Data Response Failed");
+                console.log("Data Response Failed", isDataSuccess);
+                isDataSuccess = false;
             }
         })
         .catch((err) => {

@@ -46,7 +46,6 @@ async function deleteNote(noteId) {
 
 async function updateNote(noteId) {
     addBox.click();
-
     let noteInfo = await axios.get(`/note/edit/${noteId}`);
 
     if (noteInfo.data.data.length !== 0) {
