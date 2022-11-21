@@ -93,17 +93,15 @@ async function showNotes() {
     });
 }
 
-addBtn.addEventListener("click", async (e) => {
+addBtn.addEventListener("click", (e) => {
     if (addBtn.innerText.includes("Add")) {
         sendToServerCreate();
-        await showNotes();
     } else {
         sendToServerUpdate();
-        await showNotes();
     }
 });
 
-const sendToServerUpdate = () => {
+const sendToServerUpdate = async () => {
     noteUser = userTag.value;
     noteTitle = titleTag.value;
     noteDesc = descTag.value;
@@ -122,9 +120,10 @@ const sendToServerUpdate = () => {
     axiosFunction(optionsPost);
 
     popupBox.classList.remove("show");
+    await showNotes();
 };
 
-const sendToServerCreate = () => {
+const sendToServerCreate = async () => {
     noteUser = userTag.value;
     noteTitle = titleTag.value;
     noteDesc = descTag.value;
@@ -145,6 +144,7 @@ const sendToServerCreate = () => {
     axiosFunction(optionsPost);
 
     popupBox.classList.remove("show");
+    await showNotes();
 };
 
 const axiosFunction = async (options) => {
