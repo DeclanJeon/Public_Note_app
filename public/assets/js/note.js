@@ -131,9 +131,6 @@ const sendToServerUpdate = async () => {
         if (isDataSuccess === true) {
             showNotes();
             clearInterval(noteReload);
-        } else {
-            console.log("Failed to note Reload");
-            clearInterval(noteReload);
         }
     }, 100);
 };
@@ -163,9 +160,6 @@ const sendToServerCreate = async () => {
     let noteReload = setInterval(() => {
         if (isDataSuccess === true) {
             showNotes();
-            clearInterval(noteReload);
-        } else {
-            console.log("Failed to note Reload");
             clearInterval(noteReload);
         }
     }, 100);
