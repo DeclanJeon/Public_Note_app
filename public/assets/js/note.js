@@ -169,11 +169,11 @@ const axiosFunction = async (options) => {
     await axios(options)
         .then((res) => {
             if (res.data.success === 1) {
-                console.log("Data Response Successfully", isDataSuccess);
                 isDataSuccess = true;
+                console.log("Data Response Successfully", isDataSuccess);
             } else {
-                console.log("Data Response Failed", isDataSuccess);
                 isDataSuccess = false;
+                console.log("Data Response Failed", isDataSuccess);
             }
         })
         .catch((err) => {
