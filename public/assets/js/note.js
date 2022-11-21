@@ -38,6 +38,9 @@ let noteUser;
 let noteTitle;
 let noteDesc;
 
+let isUpdated = false;
+let isCreated = false;
+
 addBox.addEventListener("click", () => {
     titleTag.focus();
     popupBox.classList.add("show");
@@ -118,9 +121,11 @@ const sendToServerUpdate = async () => {
     optionsPost.url = `/note/update`;
 
     axiosFunction(optionsPost);
-
     popupBox.classList.remove("show");
-    await showNotes();
+
+    setTimeout(() => {
+        showNotes();
+    }, 100);
 };
 
 const sendToServerCreate = async () => {
@@ -144,7 +149,10 @@ const sendToServerCreate = async () => {
     axiosFunction(optionsPost);
 
     popupBox.classList.remove("show");
-    await showNotes();
+
+    setTimeout(() => {
+        showNotes();
+    }, 100);
 };
 
 const axiosFunction = async (options) => {
