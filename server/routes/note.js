@@ -103,7 +103,6 @@ const insertRecord = async (req, res) => {
         user_id: req.body.user,
         note_title: req.body.title,
         note_description: req.body.description,
-        create_at: req.body.date,
     };
 
     for (let obj in data) {
@@ -180,12 +179,7 @@ note_router.post("/update", async (req, res) => {
         let sql = `UPDATE work_note SET user_id = ?, note_title = ?, note_description = ?, date_at = now() WHERE note_id = ${note_id}`;
         const result = await pool.query(
             sql,
-            [
-                data.user_id,
-                data.note_title,
-                data.note_description,
-                data.date_at,
-            ],
+            [data.user_id, data.note_title, data.note_description],
             (err, results) => {
                 if (err) throw err;
             }
